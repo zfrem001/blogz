@@ -1,45 +1,24 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<a href = "/blog">Main blog page</a> <a href="/add">Add new blog entry</a>
-
-<br>
-<h1 align = "center"> Build a blog</h1>
-<br>
-<br>
-<br>
-
-
-
-
-
-
-</hr>
-
-{% if blogpost|length == 0 %}
-<p>No blog posts yet</p>
-{% else %}
-
-    <ul>
-        {% for post in blogpost %}
-        <li><a href='/blog?id={{post.id}}' style = 'text-decoration:none;'><div><font size = '6'><b>{{post.name}}</b></font></div></a>
-           
-            <br>
-            {{post.body}}
-               
-           
-            <hr />
-        </li>
+    <h1>WELCOME</h1>
+    <br>
+    <br>
+    {% if users|length == 0 %}
+        <h3>No Users</h3>
+    {% else %}
+        List of all users
+        <hr>
+    
+    
+        {% for user in blogpost %}
+            <h3>{{ title}}  
+                <a href="/blog?user={{ user.username }}">
+                    {{ user.username }}
+                </a>
+            </h3>
         {% endfor %}
-    </ul>
-
-{% endif %}
-
-
-
-
-
+    {% endif %}
 
 
 

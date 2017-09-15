@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<h1>Signup</h1>
+
+<form action="/signup" method="post">
+
+    <table>
+
+        <tr>
+
+            <td><label>Name: <input type="text" name="username"/></label></td>
+
+            <td>
+
+                <!-- <input id = "name" name="username" type="text" value="{{ name }}"> -->
+
+            {% with messages= get_flashed_messages(with_categories=True,category_filter=['username_error']) %}
+            {% for category,message in messages%}
+            <li class= "{{category}}" >{{name_require}}</li>
+            {% if category == "name_require" %} 
+            <span>{{message}}</span>
+            {% endif %} 
+            {% endfor %}
+            {% endwith %}
+
+            {% for category,message in messages%}
+            <li class= "{{category}}" >{{short_name}}</li>
+            {% if category == "short_name" %} 
+            <span>{{message}}</span>
+            {% endif %} 
+            {% endfor %}     
+            </td>
+       
+        </tr>
+
+        <tr>
+
+            <td><label for="password">Password</label></td>
+
+            <td>
+
+            {% with messages= get_flashed_messages(with_categories=True, category_filter=['password_error']) %}
+                <input id="password" name="password" type="password">
+            {% for category,message in messages%}
+            <li class= "{{category}}" >{{bad_password}}</li>
+            {% if category == "bad_password" %} 
+            <span>{{message}}</span>
+            {% endif %} 
+            {% endfor %}
+            {% endwith %}
+            
+            {% for category,message in messages%}
+            <li class= "{{category}}" >{{password_require}}</li>
+            {% if category == "password_require" %} 
+            <span>{{message}}</span>
+            {% endif %} 
+            {% endfor %}
+
+            {% for category,message in messages%}
+            <li class= "{{category}}" >{{short_password}}</li>
+            {% if category == "short_password" %} 
+            <span>{{message}}</span>
+            {% endif %} 
+            {% endfor %}   
+            </td>
+ 
+        </tr>
+
+        <tr>
+
+            <td><label for="verify">Verify Password</label></td>
+
+            <td>
+
+            {% with messages= get_flashed_messages(with_categories=True, category_filter=['verify_error']) %}
+                <input id="verify" name="verify" type="password">
+            {% for category,message in messages%}
+            <li class= "{{category}}" >{{bad_password}}</li>
+            {% if category == "bad_password" %} 
+            <span>{{message}}</span>
+            {% endif %} 
+            {% endfor %}
+            {% endwith %}
+            
+            {% for category,message in messages%}
+            <li class= "{{category}}" >{{password_require}}</li>
+            {% if category == "password_require" %} 
+            <span>{{message}}</span>
+            {% endif %} 
+            {% endfor %}
+            </td>
+
+
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Register">
+
+</form>
+
+{% endblock %}

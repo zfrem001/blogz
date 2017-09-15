@@ -1,35 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a href = "/blog">Main blog page</a> 
-<br>
-<h1 align = "center"> Add a new entry</h1>
-<br>
-<br>
-<br>
+    <h1>new post</h1>
 
-<form method="post" action ='/add'>
-    <label> Title of post:
-        <input type='text' name='newpost'>
-    </label>
-    <p class="error">{{newpost_error}}</p>
-    <br>
-    <br>
-    <br>
-    <br>
-    
-    
-    <label>Blog content:
-            <br>
-            <br>
-            
-    <textarea name='body' style="width: 350px; height: 175px;"></textarea> 
-    </label>
-    <p class="error">{{body_error}}</p>
-    <br>
 
- <input type='submit' value='Add new Post'>
+<form action='/newpost' method='POST'>
 
+<label>title<br><input type=text name="title"/></label>
+{% with messages= get_flashed_messages(with_categories=True,category_filter=["error1"]) %}
+    {% for category,message in messages%}
+
+<li class= "{{category}}" >{{title}}</li>
+ {% if category == "title" %} 
+<span>{{message}}</span>
+ <!-- {% endif %}  -->
+{% endfor %}
+ <!-- {% endwith %}  -->
+<br><br>
+
+<label>post<br><textarea name="post"></textarea></label>
+{% with messages= get_flashed_messages(with_categories=True,category_filter=["error2"]) %}
+  {% for category,message in messages%} 
+ <li class= "{{category}}">{{blogbody}}</li>
+<!-- {% if category == "blogbody" %} -->
+ <span>{{message}}</span> 
+ <!-- {% endif %} -->
+{% endfor %}
+ {% endwith %} 
+<br><br>
+<input type="submit" value="Submit Query"/>
 </form>
-
 {% endblock %}
